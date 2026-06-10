@@ -1,0 +1,11 @@
+CLASSIX clustered 900 data points with 2 features.
+The radius parameter was set to 0.25 and minPts was set to 10.
+As the provided data was auto-scaled by a factor of 1/1.42,
+points within a radius R=0.25*1.42=0.36 were grouped together.
+In total, 1426 distances were computed (1.6 per data point).
+This resulted in 15 groups, each with a unique group center.
+These 15 groups were subsequently merged into 4 clusters. 
+
+For a visualisation of the clusters, use .explain(plot=True).
+To explain the clustering of individual data points, use
+.explain(index1) or .explain(index1,index2) with data indices.
