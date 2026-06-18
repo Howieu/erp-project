@@ -31,3 +31,7 @@ env/
 
 # Raw data downloads (large binaries; re-fetch via src/domain/rfm.py + UCI/Kaggle)
 data/raw/
+
+# Kaggle credentials (never commit)
+kaggle.json
+.kaggle/
