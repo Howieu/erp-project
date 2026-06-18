@@ -31,7 +31,7 @@ A clustering's value ultimately depends on whether its explanation can be turned
 3. CLASSIX (2022) and similar self-explaining clustering algorithms are new and have NOT been tested for explanation usability in real retail scenarios.
 
 ## Revised Defensible Thesis (replaces original)
-CLASSIX beats RFM+K-Means on clustering quality, BUT its geometric explanation has higher explanation complexity and can't be directly turned into operational action, whereas PSyKE-extracted CREAM rules are more parsimonious and directly actionable. Trade-off "clustering quality <-> explanation usability" evaluated jointly.
+CLASSIX is competitive with RFM+K-Means on clustering quality and robust across cluster shapes — NOT a uniform winner (Ch4 v3 benchmark: it wins/ties on shape sets, trails K-Means on real/high-dimensional data) — BUT its geometric explanation has higher explanation complexity and can't be directly turned into operational action, whereas the threshold-tree rules from explainable k-means (Moshkovitz et al. 2020, ExKMC) are more parsimonious and directly actionable. Trade-off "clustering quality <-> explanation usability" evaluated jointly.
 
 **Why the rewrite:** original claim "more intuitive for business users" is a claim about humans the user CANNOT test (no user study, no access to operations staff for interviews). Reframed to objective proxies. See [[project-erp-dissertation]] Core Thesis + CRITICAL CONSTRAINT.
 

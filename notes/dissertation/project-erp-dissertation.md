@@ -16,7 +16,7 @@ metadata:
 **Plan file:** notes/RESEARCH_PLAN_SESSION1.md
 
 ### Core Thesis (REVISED 2026-06-13 — defensible version)
-CLASSIX outperforms RFM + K-Means in clustering quality, BUT its geometric explanations have higher explanation complexity and cannot be directly translated into operational actions, whereas PSyKE-extracted CREAM rules are more parsimonious and directly actionable. Trade-off: "clustering quality <-> explanation usability", evaluated jointly.
+CLASSIX achieves clustering quality competitive with RFM + K-Means and is robust across cluster shapes — NOT uniformly superior (Ch4 v3 benchmark: CLASSIX wins/ties on the shape sets but trails K-Means on real/high-dimensional data, mirroring Chen & Güttel's own real-data results) — BUT its geometric explanations have higher explanation complexity and cannot be directly translated into operational actions, whereas the threshold-tree rules from explainable k-means (Moshkovitz et al. 2020, ExKMC) are more parsimonious and directly actionable. Trade-off: "clustering quality <-> explanation usability", evaluated jointly.
 
 **CRITICAL CONSTRAINT (user confirmed):** User CANNOT do a real user study and CANNOT interview operations staff. So "intuitiveness/usability" is operationalized as OBJECTIVE PROXIES, NOT human evaluation:
 - Rule side (CREAM/PSyKE): rule count, conditions per rule, total rule length, coverage, fidelity to K-Means

@@ -1,0 +1,44 @@
+{
+  "started_at_utc": "2026-06-18T04:57:42.908196+00:00",
+  "elapsed_seconds": 4.184344792010961,
+  "n_raw_rows": 540,
+  "n_agg_rows": 108,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "datasets": [
+    "aggregation",
+    "compound",
+    "jain",
+    "pathbased",
+    "r15",
+    "spiral",
+    "iris",
+    "wine",
+    "seeds"
+  ],
+  "method_grids": {
+    "dbscan_eps": [
+      0.15,
+      0.25,
+      0.4,
+      0.6,
+      0.9
+    ],
+    "dbscan_min_samples": 5,
+    "classix_radius": [
+      0.1,
+      0.2,
+      0.3,
+      0.5,
+      0.8
+    ],
+    "classix_minPts": 5
+  },
+  "python": "3.11.11 (main, Dec 11 2024, 10:25:04) [Clang 14.0.6 ]",
+  "platform": "macOS-26.5.1-arm64-arm-64bit"
+}

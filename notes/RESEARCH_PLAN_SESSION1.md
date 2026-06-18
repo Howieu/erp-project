@@ -15,7 +15,7 @@
 
 ## Core Thesis Statement
 
-> In an e-commerce setting, CLASSIX produces better clustering quality than the industry-standard RFM + K-Means approach, and provides geometric explanations of cluster structure — but those explanations are less intuitive for business users than CREAM's rule-based output. Neither is a perfect solution; the right choice depends on whether the priority is cluster quality or explanation readability.
+> In an e-commerce setting, CLASSIX produces clustering quality competitive with the industry-standard RFM + K-Means approach and is robust across cluster shapes (rather than uniformly better), and provides geometric explanations of cluster structure — but those explanations carry higher explanation complexity and are harder to turn into operational actions than the parsimonious threshold-tree rules of explainable k-means (ExKMC). Neither is a perfect solution; the right choice depends on whether the priority is cluster quality or explanation usability.
 
 ---
 
