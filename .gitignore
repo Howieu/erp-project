@@ -28,3 +28,6 @@ env/
 .vscode/
 *.swp
 *.swo
+
+# Raw data downloads (large binaries; re-fetch via src/domain/rfm.py + UCI/Kaggle)
+data/raw/

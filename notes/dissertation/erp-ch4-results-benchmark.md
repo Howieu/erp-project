@@ -1,0 +1,29 @@
+# ERP Dissertation — Chapter 4: Clustering Quality & Efficiency (LOCKED 2026-06-18, axis-reorg)
+
+Confirmed via ARS plan-mode Socratic dialogue. **Results reorganised by ARGUMENT AXIS, not by dataset** (user choice 2026-06-18): Ch4 = the quality+efficiency axis (RQ1–3, benchmark AND RetailRocket quality together); Ch5 = the explanation-usability axis (RQ4, standalone — the novel contribution). RetailRocket spans both chapters, contributing quality data here and explanation data in Ch5. Ch3 methodology (two-layer benchmark+domain + RQ4 pipeline comparison) is unchanged at the MEASUREMENT level; only the Results write-up reorganises. Target ~1,500 words, data source results/benchmark_v3/ (+ pending RetailRocket domain run).
+
+## Landing point
+Clustering quality has NO uniform winner; CLASSIX is competitive, shape-robust, and the fastest method, but trails K-Means on real/high-d. Quality alone cannot rank the methods → the deciding axis is explanation usability (→ Ch5).
+
+## 5-section skeleton (~1,500w)
+| § | Words | Task | Ammunition |
+|---|---|---|---|
+| 4.1 Setup + fidelity anchor | ~150 | Recap Quality Arena (9 datasets, 4 methods + CLASSIX 2 variants, fair grid); lead with fidelity check (max\|ΔARI\|=0.0000) so later gaps = tuning not bug. Signpost: RetailRocket's quality is reported here, its explanation in Ch5. | fidelity Δ=0 |
+| 4.2 Quality WITH ground truth — benchmark ⭐ | ~450 | fig4-1 + per-dataset winner table. CLASSIX competitive on shape (Jain/Spiral=1.0, Aggregation 0.91 top), trails real/high-d (Wine 0.54, Seeds 0.71). Honest weak spot Pathbased 0.58. KEY NUANCE: CLASSIX real ARI 0.54 but NMI 0.686 (near top) → recovers structure, differs on cluster count/boundaries. | fig4-1; win table; ARI-vs-NMI |
+| 4.3 Quality WITHOUT ground truth — RetailRocket | ~350 | Internal metrics only (silhouette/DB/CH) on RFM features; cluster separation/structure; cannot use ARI/NMI (no labels). **[DATA PENDING: domain study not yet run]** | internal metrics |
+| 4.4 Efficiency + robustness (RQ2–3) | ~400 | CLASSIX FASTEST median 0.98ms vs KMeans 35.7ms (~36×); fig4-4. Parameter sensitivity: fig4-2 (DBSCAN eps cliff) vs fig4-3 (CLASSIX radius smoother); seed determinism (det methods std=0; KMeans init-variance only Compound/Aggregation/Spiral). | fig4-2/3/4; 36×; std=0 |
+| 4.5 Synthesis + bridge | ~150 | Quality a wash, CLASSIX wins efficiency, but quality can't rank → deciding axis = explanation usability (→ Ch5). | bridge to RQ4 |
+
+## Argument stress test
+- Weakest point: "competitive" = spinning a loss? DEFENCE: anchor to CLASSIX paper's own positioning (fast+explainable+competitive) + official exp5 real-data table (CLASSIX wins ~5/8, not dominant) → matches original authors.
+- Reverse test: CLASSIX dominating quality would WEAKEN the trade-off thesis; competitive-not-dominant strengthens "explanation is the deciding axis". Self-consistent.
+- Residual risk: only 3 benchmark real datasets, none e-commerce → benchmark = controlled internal-validity comparison; RetailRocket (4.3 + Ch5) supplies external validity.
+
+## Verified data points (v3, 2026-06-18)
+Runtime median ms: classix 0.98 / dbscan 1.33 / ward 2.19 / kmeans++ 35.68. Real-data mean NMI(best): kmeans 0.754 / ward 0.737 / classix 0.686 / dbscan 0.415. Real-data mean Silhouette(best-ARI cfg): kmeans 0.382 / ward 0.372 / dbscan 0.339 / classix 0.299.
+
+## Figures (results/benchmark_v3/figures/)
+fig4-1 best_ari_per_dataset · fig4-2 dbscan_eps_sweep · fig4-3 classix_radius_sweep · fig4-4 runtime_per_dataset.
+
+## Status
+Ch4 PLANNED & user-confirmed (axis-reorg). Data ready for 4.2/4.4 (benchmark v3); 4.3 awaits RetailRocket domain run. Next: draft Ch4 prose, or plan/run the pending pieces. See [[erp-ch5-explanation-usability]].
