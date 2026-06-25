@@ -23,7 +23,7 @@ MSc Data Science, University of Manchester. Explainable customer segmentation: C
 |----|-------|--------|
 | 1 | Introduction | ✅ Locked (Socratic session 2, 2026-06-13); demo prose drafted |
 | 2 | Literature Review | ⬜ Not planned — skeleton only (6 core refs locked, needs search) |
-| 3 | Methodology | ⬜ Not formally planned — derivable from code; demo prose drafted |
+| 3 | Methodology | ✅ Locked (ars-plan 2026-06-25): §3.x math analysis drafted, §3.4–3.5 selection protocol, §3.1/3.2/3.3/3.6. ⚠️ triggers Ch4 §4.1 data refresh |
 | 4 | Results (4.1 Quality+Efficiency / 4.2 Explanation Usability) | ✅ Plan locked, ALL data ready; demo prose drafted |
 | 5 | Discussion | ⬜ demo initial draft |
 | 6 | Conclusion | ⬜ demo initial draft |

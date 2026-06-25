@@ -1,6 +1,6 @@
 # ERP Dissertation — Chapter 3: Methodology (planning started 2026-06-25)
 
-Status: **NOT fully locked.** This note currently captures only the newly-added **mathematical-analysis subsection** (M10 brief deliverable 2), which the user's submitted project plan had OMITTED (that plan scoped the project as purely empirical: RQ1–4, "不打算提出新算法，而是给出结构化的实证评价"). The rest of Ch3 (data, preprocessing, method grids, evaluation metrics, RQ4 pipeline) is derivable from existing code (`src/benchmark/`, `src/domain/`) and still needs a Socratic pass to lock. Placement decision (user, 2026-06-25): math analysis = a SECTION INSIDE Ch3, not a standalone chapter → keeps the 6-chapter structure.
+Status: **PLANNING COMPLETE (2026-06-25, ars-plan).** All sections locked: §3.x math analysis (drafted), §3.4–3.5 selection protocol, §3.1/3.2/3.3/3.6. The math-analysis section is the M10 deliverable-2 the submitted plan had OMITTED (that plan was purely empirical: "不打算提出新算法，而是给出结构化的实证评价"); added as a SECTION inside Ch3 (keeps the 6-chapter structure). One execution dependency remains: Ch4 §4.1 data refresh under the new selection protocol (tracked task).
 
 ## 3.x Algorithmic properties of CLASSIX (mathematical analysis)
 **Drafted (zh, 2026-06-25):** `notes/dissertation/drafts/ch3-math-analysis.md` — fig3-1 + ①③④ + ② footnote. Plan: `docs/superpowers/plans/2026-06-25-ch3-math-analysis-section.md`.
@@ -33,8 +33,19 @@ This is the mathematical evidence behind the ~36× speed advantage (Ch4 §4.1.4)
 - **Verified citations (web-checked 2026-06-25):** Rousseeuw (1987) *Silhouettes…* J. Comput. Appl. Math. 20:53–65, DOI 10.1016/0377-0427(87)90125-7 (avg silhouette to select clusters); von Luxburg, Williamson & Guyon (2012) *Clustering: Science or Art?* PMLR v27 (evaluation/parameter-selection problem); a clustering-validation-indices survey (arXiv 2407.20246) for internal-vs-external taxonomy; clustering-benchmark methodology (e.g. bioRxiv 2025.08.20.671270; arXiv 2108.11053) explicitly recommending comparison on BOTH optimally-tuned AND realistically-obtainable performance, and warning that tuning to the label's k undermines fairness + internal-index tuning is algorithm-biased. (Re-verify exact attributions during Ch2 citation work.)
 - ⚠️ **CONSEQUENCE — Ch4 data refresh required:** the current §4.1.2 "best-ARI per dataset" numbers (Jain/Spiral=1.0, Aggregation 0.91, Wine 0.54…) must be re-derived. raw experiments need NOT be fully re-run — `results/benchmark_v3/metrics_raw.csv` already holds every config's ARI+silhouette, so re-select by silhouette and add the oracle column; ONLY KMeans/Ward need a cheap extra k-grid sweep (currently run at true_k only). Tracked as a task.
 
-## Open Ch3 items (still to plan/lock)
-- 3.1 design (two-layer benchmark+domain + RQ4), 3.2 data (UCI Online Retail; benchmark sets), 3.3 preprocessing (log1p+StandardScaler), 3.4 methods + tuning grids (from `methods.py`), 3.5 evaluation metrics, 3.6 RQ4 explanation-arena protocol + objective proxies, 3.x (this) math analysis.
-- Reconcile the CREAM→ExKMC pivot and RetailRocket→UCI pivot vs the submitted plan.
+## §3.1 / 3.2 / 3.3 / 3.6 (LOCKED 2026-06-25, ars-plan)
+
+**§3.1 Research design — two layers + RQ4.** Layer 1 = benchmark (labelled): controlled internal-validity comparison, 4 methods × 9 datasets, ARI/NMI computable. Layer 2 = UCI domain (unlabelled): external validity, internal metrics only. RQ4 explanation arena sits on top of both layers' outputs.
+
+**§3.2 Data.** Benchmark = 9 datasets: 3 real (iris 150×4 k3, seeds 210×7 k3, wine 178×13 k3) + 6 shape (aggregation 788×2 k7, compound 399×2 k6, jain 373×2 k2, pathbased 300×2 k3, r15 600×2 k15, spiral 312×2 k3). Domain = UCI Online Retail cleaned → RFM, 4338 customers.
+- **Deviations-from-proposal note (place at end of §3.2):** (1) RetailRocket→UCI Online Retail — UCI is transaction-level with genuine UnitPrice×Quantity so Monetary is real money; RetailRocket's event stream has no clean price. UCI was already the proposal's backup; here promoted to primary. (2) CREAM→ExKMC (justified in §3.6).
+
+**§3.3 Preprocessing.** RFM via log1p (de-skew) + StandardScaler (common scale). Quality layer and explanation layer share one feature space so Ch4 numbers and explanations are consistent.
+
+**§3.6 RQ4 protocol + objective proxies.** Pipeline-vs-pipeline: 甲 CLASSIX (self-explaining geometric) vs 乙 K-Means++ + ExKMC (threshold-tree rules). Why NOT "one clustering, two explainers": CLASSIX's geometric explanation is intrinsic to its own clusters, so "same clustering" is infeasible for it. Objective proxies (Approach A, reported separately, no composite): CLASSIX = #starting points / explanation dimensionality / explanation length; ExKMC = #rules / depth / tree size / fidelity-to-K-Means. Proxy legitimacy: Doshi-Velez & Kim (2017), Miller (2019), Lipton (2018), Lakkaraju (2016).
+- **CREAM→ExKMC pivot:** ExKMC installs/runs cleanly on conda py3.10, yields directly comparable threshold-tree rules, and gives a quantifiable fidelity-to-K-Means; CREAM retained in Ch2 as the rule-extraction paradigm.
+
+## Ch3 status
+**PLANNING COMPLETE (2026-06-25).** §3.x math analysis drafted ([[ch3-math-analysis]]); §3.4–3.5 selection protocol locked; §3.1/3.2/3.3/3.6 locked. Outstanding execution dependency: Ch4 §4.1 data refresh under the new selection protocol (tracked task). Next: draft Ch3 prose, or refresh Ch4 then draft Ch4.
 
 See [[erp-ch1-introduction]], [[erp-ch4-results-benchmark]], [[index]]; memory `classix-advantage-framing`.
