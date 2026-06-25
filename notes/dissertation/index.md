@@ -14,17 +14,27 @@ MSc Data Science, University of Manchester. Explainable customer segmentation: C
 ## Notes
 - [[project-erp-dissertation]] — top-level project: thesis, experimental design, chapter structure, timeline, libraries, current status
 - [[erp-ch1-introduction]] — Chapter 1 Introduction, LOCKED plan (hook, gap, timeliness, four-part skeleton, revised thesis)
+- [[erp-ch4-results-benchmark]] — Results §4.1 quality+efficiency plan + verified data (benchmark v3 + UCI domain)
+- [[erp-ch5-explanation-usability]] — Results §4.2 explanation usability (RQ4) plan + Explanation Arena data
+- `DEMO_DRAFT_zh.md` — full Chinese demo draft of the whole dissertation (2026-06-25)
 
-## Chapter status
+## Chapter status (6-chapter structure — Results merged 2026-06-25)
 | Ch | Title | Status |
 |----|-------|--------|
-| 1 | Introduction | ✅ Locked (Socratic session 2, 2026-06-13) |
-| 2 | Literature Review | 🔵 In planning (next) |
-| 3 | Methodology | ⬜ Pending — must answer how "explanation usability" is measured objectively |
-| 4 | Results: Benchmark | ⬜ |
-| 5 | Results: RetailRocket domain study | ⬜ |
-| 6 | Discussion | ⬜ |
-| 7 | Conclusion | ⬜ |
+| 1 | Introduction | ✅ Locked (Socratic session 2, 2026-06-13); demo prose drafted |
+| 2 | Literature Review | ⬜ Not planned — skeleton only (6 core refs locked, needs search) |
+| 3 | Methodology | ⬜ Not formally planned — derivable from code; demo prose drafted |
+| 4 | Results (4.1 Quality+Efficiency / 4.2 Explanation Usability) | ✅ Plan locked, ALL data ready; demo prose drafted |
+| 5 | Discussion | ⬜ demo initial draft |
+| 6 | Conclusion | ⬜ demo initial draft |
+
+> **Merge note (2026-06-25):** former Ch4 (benchmark quality+efficiency) and Ch5 (explanation usability, RQ4) merged into a single Results chapter (Ch4) with two major sections; Discussion/Conclusion renumbered to Ch5/Ch6. The two locked plan notes still hold at the section level.
+
+## Open deliverable gaps vs the M10 brief (proposer: Stefan Güttel — CLASSIX's author)
+The M10 brief asks to **describe, analyse, and COMPARE** explainable clustering (not prove CLASSIX superior). Three deliverables: unified review / **mathematical analysis** / benchmarking. Two are under-served and now IN PLAN:
+1. **Mathematical analysis** (brief deliverable 2 — e.g. convergence / numerical stability). ⚠️ Currently ABSENT. Needs scoping (likely a CLASSIX-focused analysis: sorting/aggregation step, radius/tolerance behaviour, or stability of the greedy merging). → new section/chapter.
+2. **Unified review covering the 3 brief surveys** in Ch2: Hu et al. (2024, arXiv:2409.00743); Dewoprabowo et al. (2025, J. Intelligent Systems 34(1)); Chen, J. (2018, PhD, Northeastern). Plus methods [4] CLASSIX, [5] CREAM (Sabbatini & Calegari 2023), [6] ExKMC.
+3. Framing note: surface CLASSIX's real advantages honestly (intrinsic/faithful-by-construction/k-free/fast) — see memory `classix-advantage-framing`. NOT over-claim quality superiority.
 
 ## To resume planning with Claude
-Say: *"继续 ERP 论文,从第 2 章 Literature Review 接着规划,第 1 章已锁定。记得我没法做用户研究,可解释性用复杂度指标这类客观代理衡量。"*
+Say: *"继续 ERP 论文。6 章制，结果章已合并。下一步规划 Ch3 方法论（代码已定，正式写定以消除不一致），或扩展 Ch2 文献检索。记得我没法做用户研究，可解释性用客观代理衡量。"*
