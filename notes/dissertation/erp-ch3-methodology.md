@@ -3,6 +3,8 @@
 Status: **NOT fully locked.** This note currently captures only the newly-added **mathematical-analysis subsection** (M10 brief deliverable 2), which the user's submitted project plan had OMITTED (that plan scoped the project as purely empirical: RQ1–4, "不打算提出新算法，而是给出结构化的实证评价"). The rest of Ch3 (data, preprocessing, method grids, evaluation metrics, RQ4 pipeline) is derivable from existing code (`src/benchmark/`, `src/domain/`) and still needs a Socratic pass to lock. Placement decision (user, 2026-06-25): math analysis = a SECTION INSIDE Ch3, not a standalone chapter → keeps the 6-chapter structure.
 
 ## 3.x Algorithmic properties of CLASSIX (mathematical analysis)
+**Drafted (zh, 2026-06-25):** `notes/dissertation/drafts/ch3-math-analysis.md` — fig3-1 + ①③④ + ② footnote. Plan: `docs/superpowers/plans/2026-06-25-ch3-math-analysis-section.md`.
+
 Purpose: not new theorems — explain *why* the empirically observed CLASSIX behaviours hold, by proving properties of its aggregation step (`official_classix/classix/aggregate_ed.py`). Each result is tied to a measured result in Ch4, and each underpins a genuine CLASSIX advantage (see memory `classix-advantage-framing`). Scope (user-leaning, accessible): **focused speed/correctness trio ①③④, with ② stated briefly.**
 
 | # | Property | Proof sketch | Explains (Ch4 observation) | Advantage surfaced |
