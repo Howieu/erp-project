@@ -7,6 +7,8 @@ metadata:
   originSessionId: cc3219b9-5623-4ea8-ac7d-16de24043c42
 ---
 
+> ⚠️ **SUPERSEDED (2026-06-25).** This note predates the structural changes: the chapter spine is now **6 chapters (Results merged)**, datasets pivoted **RetailRocket→UCI Online Retail**, rule extractor pivoted **CREAM→ExKMC**, and a **mathematical-analysis section** was added to Ch3. For the current authoritative state, structure, and where-to-continue, see **`index.md`** and the memory file **`erp-paper-architecture.md`**. The text below is kept for history only.
+
 ## ERP Dissertation — Explainable Clustering
 
 **Degree:** MSc Data Science, University of Manchester
