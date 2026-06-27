@@ -33,8 +33,8 @@ RFM_CSV = Path("data/processed/rfm.csv")
 OUT = Path("results/domain_uci")
 
 
-def load_scaled():
-    rfm = pd.read_csv(RFM_CSV)
+def load_scaled(csv: Path = RFM_CSV):
+    rfm = pd.read_csv(csv)
     sc = StandardScaler()
     Xs = sc.fit_transform(np.log1p(rfm[FEATS].values))
     return rfm, Xs, sc
@@ -77,9 +77,9 @@ def kprime_curve(Xs, km, k, kmax_mult=4) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def main() -> None:
-    OUT.mkdir(parents=True, exist_ok=True)
-    rfm, Xs, sc = load_scaled()
+def main(csv: Path = RFM_CSV, out: Path = OUT) -> None:
+    out.mkdir(parents=True, exist_ok=True)
+    rfm, Xs, sc = load_scaled(csv)
     k = 4
 
     # Pipeline 乙
@@ -108,10 +108,16 @@ def main() -> None:
     print("  " + buf.getvalue().strip().splitlines()[0])
 
     curve = kprime_curve(Xs, km, k)
-    curve.to_csv(OUT / "exkmc_kprime_curve.csv", index=False)
-    print(f"\n=== k' trade-off curve (wrote {OUT/'exkmc_kprime_curve.csv'}) ===")
+    curve.to_csv(out / "exkmc_kprime_curve.csv", index=False)
+    print(f"\n=== k' trade-off curve (wrote {out/'exkmc_kprime_curve.csv'}) ===")
     print(curve.to_string(index=False))
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+
+    ap = argparse.ArgumentParser(description="Explanation Arena (default: UCI; --csv/--out for RetailRocket robustness)")
+    ap.add_argument("--csv", type=Path, default=RFM_CSV)
+    ap.add_argument("--out", type=Path, default=OUT)
+    a = ap.parse_args()
+    main(a.csv, a.out)

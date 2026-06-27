@@ -43,13 +43,14 @@ FEATS = ["recency", "frequency", "monetary"]
 RFM_CSV = Path("data/processed/rfm.csv")
 OUT = Path("results/domain_uci")
 
-K = 4  # RFM-convention cluster count; matches Ch5 Explanation Arena
+K = 4  # RFM-convention cluster count; matches Ch5 Explanation Arena (operating point)
+K_GRID = tuple(range(2, 13))  # k sweep for fair per-method tuning (2..12)
 DBSCAN_EPS_GRID = tuple(round(0.10 + 0.05 * i, 2) for i in range(23))  # 0.10..1.20
 CLASSIX_RADIUS_GRID = tuple(round(0.05 + 0.05 * i, 2) for i in range(30))  # 0.05..1.50
 
 
-def load_scaled():
-    rfm = pd.read_csv(RFM_CSV)
+def load_scaled(csv: Path = RFM_CSV):
+    rfm = pd.read_csv(csv)
     sc = StandardScaler()
     Xs = sc.fit_transform(np.log1p(rfm[FEATS].values))
     return rfm, Xs
@@ -112,18 +113,33 @@ def select_classix(X: np.ndarray) -> tuple[dict, np.ndarray]:
     return best
 
 
-def main() -> None:
-    OUT.mkdir(parents=True, exist_ok=True)
-    rfm, Xs = load_scaled()
-    print(f"UCI Online Retail RFM: {Xs.shape[0]} customers, {Xs.shape[1]} features (log1p + StandardScaler)\n")
+def select_k(X: np.ndarray, fit_predict) -> tuple[int, np.ndarray]:
+    """Tune k by best guarded silhouette — so k-methods are compared at their own
+    optimum, not a single transferred k (fair quality comparison)."""
+    best_score, best = -np.inf, None
+    for k in K_GRID:
+        labels = fit_predict(k)
+        score = _silhouette_guarded(X, labels)
+        if score > best_score:
+            best_score, best = score, (k, labels)
+    return best
+
+
+def main(csv: Path = RFM_CSV, out: Path = OUT) -> None:
+    out.mkdir(parents=True, exist_ok=True)
+    rfm, Xs = load_scaled(csv)
+    print(f"Domain RFM ({csv.name}): {Xs.shape[0]} customers, {Xs.shape[1]} features (log1p + StandardScaler)\n")
 
     rows = []
+    _kmeans = lambda k: KMeans(n_clusters=k, init="k-means++", n_init=10, random_state=0).fit_predict(Xs)
+    _ward = lambda k: AgglomerativeClustering(n_clusters=k, linkage="ward").fit_predict(Xs)
 
-    km = KMeans(n_clusters=K, init="k-means++", n_init=10, random_state=0).fit_predict(Xs)
-    rows.append({"method": "kmeans++", "params": f"k={K}", **internal_metrics(Xs, km)})
+    # --- fair comparison: each method at its OWN silhouette-optimal setting ---
+    bk_km, km_best = select_k(Xs, _kmeans)
+    rows.append({"method": "kmeans++", "params": f"k={bk_km} (best silhouette)", **internal_metrics(Xs, km_best)})
 
-    ward = AgglomerativeClustering(n_clusters=K, linkage="ward").fit_predict(Xs)
-    rows.append({"method": "hierarchical_ward", "params": f"k={K}", **internal_metrics(Xs, ward)})
+    bk_w, ward_best = select_k(Xs, _ward)
+    rows.append({"method": "hierarchical_ward", "params": f"k={bk_w} (best silhouette)", **internal_metrics(Xs, ward_best)})
 
     db_params, db_labels = select_dbscan(Xs)
     rows.append({"method": "dbscan", "params": f"eps={db_params['eps']} (best silhouette)", **internal_metrics(Xs, db_labels)})
@@ -131,15 +147,23 @@ def main() -> None:
     cx_params, cx_labels = select_classix(Xs)
     rows.append({"method": "classix", "params": f"radius={cx_params['radius']} (best silhouette)", **internal_metrics(Xs, cx_labels)})
 
-    cx09 = _run_classix(Xs, 0.9)
-    rows.append({"method": "classix", "params": "radius=0.9 (Ch5 operating point)", **internal_metrics(Xs, cx09)})
+    # --- operating points (k=4 / radius=0.9) that tie Ch4 quality to Ch5 explanation ---
+    rows.append({"method": "kmeans++", "params": f"k={K} (Ch5 operating point)", **internal_metrics(Xs, _kmeans(K))})
+    rows.append({"method": "hierarchical_ward", "params": f"k={K} (Ch5 operating point)", **internal_metrics(Xs, _ward(K))})
+    rows.append({"method": "classix", "params": "radius=0.9 (Ch5 operating point)", **internal_metrics(Xs, _run_classix(Xs, 0.9))})
 
     df = pd.DataFrame(rows)
-    df.to_csv(OUT / "domain_quality.csv", index=False)
+    df.to_csv(out / "domain_quality.csv", index=False)
     print("=== Ch4 §4.3 domain quality (internal metrics; higher silhouette/CH, lower DB = better) ===")
     print(df.to_string(index=False))
-    print(f"\nwrote {OUT / 'domain_quality.csv'}")
+    print(f"\nwrote {out / 'domain_quality.csv'}")
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+
+    ap = argparse.ArgumentParser(description="Domain quality (default: UCI; --csv/--out for RetailRocket robustness)")
+    ap.add_argument("--csv", type=Path, default=RFM_CSV)
+    ap.add_argument("--out", type=Path, default=OUT)
+    a = ap.parse_args()
+    main(a.csv, a.out)

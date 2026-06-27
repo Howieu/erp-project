@@ -1,0 +1,8 @@
+method,params,n_clusters,n_noise,silhouette,davies_bouldin,calinski_harabasz
+kmeans++,k=2 (best silhouette),2,0,0.8506,0.4816,6809.7
+hierarchical_ward,k=2 (best silhouette),2,0,0.8591,0.4277,6713.9
+dbscan,eps=1.2 (best silhouette),2,25,0.582,0.9899,2794.8
+classix,radius=1.45 (best silhouette),5,0,0.8464,0.277,203.5
+kmeans++,k=4 (Ch5 operating point),4,0,0.5601,0.7891,10286.7
+hierarchical_ward,k=4 (Ch5 operating point),4,0,0.503,0.8505,8859.9
+classix,radius=0.9 (Ch5 operating point),26,0,0.5557,0.4142,354.8
