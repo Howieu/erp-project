@@ -23,7 +23,7 @@ MSc Data Science, University of Manchester. Explainable customer segmentation: C
 |----|-------|--------|
 | 1 | Introduction | ✅ **Standalone draft** (drafts/ch1-introduction-zh.md, 2026-06-28) — hook/background/gap/timeliness/purpose-RQ-thesis, ~800w; UCI+ExKMC scope switch folded into prose. Not yet peer-reviewed. |
 | 2 | Literature Review | ✅ **Drafted** (drafts/ch2-literature-review-zh.md, 2026-06-28) — 5-section funnel, proxy shield, M10 bibliography; 3 backbone surveys (Hu 2024 / Dewoprabowo 2025 / Chen 2018) content-verified. Not yet peer-reviewed. |
-| 3 | Methodology | ✅ Locked (ars-plan 2026-06-25): §3.x math analysis drafted, §3.4–3.5 selection protocol, §3.1/3.2/3.3/3.6. ⚠️ triggers Ch4 §4.1 data refresh |
+| 3 | Methodology | ✅ **Standalone draft** (drafts/ch3-methodology-zh.md §3.1–3.6 + ch3-math-analysis.md §3.7, 2026-06-28) — research design, interpretable-features precondition, dual-selection protocol, Approach-A complexity profiles + proxy shield, k′ trade-off curve, limitations. Not yet peer-reviewed. |
 | 4 | Results (4.1 Quality+Efficiency / 4.2 Explanation Usability) | ✅ **Drafted → reviewed → revised → re-review ACCEPTED** (drafts/ch4-results-zh.md, 2026-06-25). Dual-lens §4.1 + §4.2 RQ4; fig4-5/fig4-6 added. 2 residuals carried to Ch5. |
 | 5 | Discussion | ✅ **Drafted** (drafts/ch5-discussion-zh.md, 2026-06-28) — significance / practice / relation-to-lit / 4 limitations / future work, ~1,000w. Not yet peer-reviewed. |
 | 6 | Conclusion | ✅ **Drafted** (drafts/ch6-conclusion-zh.md, 2026-06-28) — recap + core finding + 3 contributions + future work, ~480w. Not yet peer-reviewed. |
