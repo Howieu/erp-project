@@ -16,7 +16,9 @@ MSc Data Science, University of Manchester. Explainable customer segmentation: C
 - [[erp-ch1-introduction]] — Chapter 1 Introduction, LOCKED plan (hook, gap, timeliness, four-part skeleton, revised thesis)
 - [[erp-ch4-results-benchmark]] — Results §4.1 quality+efficiency plan + verified data (benchmark v3 + UCI domain)
 - [[erp-ch5-explanation-usability]] — Results §4.2 explanation usability (RQ4) plan + Explanation Arena data
-- `DEMO_DRAFT_zh.md` — full Chinese demo draft of the whole dissertation (2026-06-25)
+- `FULL_DRAFT_zh.md` — **assembled first complete draft** (Ch1–Ch6 + §3.7 + Harvard refs, ~8,100 word-equiv, 2026-06-28). Auto-built from `drafts/` per-chapter files; abstract pending (ars-abstract). **This supersedes `DEMO_DRAFT_zh.md`.**
+- `drafts/` — per-chapter standalone drafts (ch1…ch6 + ch3-math §3.7), the source of truth for FULL_DRAFT
+- `DEMO_DRAFT_zh.md` — earlier demo draft of the whole dissertation (2026-06-25), now superseded by FULL_DRAFT (frozen; may still ref old fig5-1 numbering)
 
 ## Chapter status (6-chapter structure — Results merged 2026-06-25)
 | Ch | Title | Status |
