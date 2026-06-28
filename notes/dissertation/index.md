@@ -25,8 +25,8 @@ MSc Data Science, University of Manchester. Explainable customer segmentation: C
 | 2 | Literature Review | ✅ **Drafted** (drafts/ch2-literature-review-zh.md, 2026-06-28) — 5-section funnel, proxy shield, M10 bibliography; 3 backbone surveys (Hu 2024 / Dewoprabowo 2025 / Chen 2018) content-verified. Not yet peer-reviewed. |
 | 3 | Methodology | ✅ Locked (ars-plan 2026-06-25): §3.x math analysis drafted, §3.4–3.5 selection protocol, §3.1/3.2/3.3/3.6. ⚠️ triggers Ch4 §4.1 data refresh |
 | 4 | Results (4.1 Quality+Efficiency / 4.2 Explanation Usability) | ✅ **Drafted → reviewed → revised → re-review ACCEPTED** (drafts/ch4-results-zh.md, 2026-06-25). Dual-lens §4.1 + §4.2 RQ4; fig4-5/fig4-6 added. 2 residuals carried to Ch5. |
-| 5 | Discussion | ⬜ demo initial draft |
-| 6 | Conclusion | ⬜ demo initial draft |
+| 5 | Discussion | ✅ **Drafted** (drafts/ch5-discussion-zh.md, 2026-06-28) — significance / practice / relation-to-lit / 4 limitations / future work, ~1,000w. Not yet peer-reviewed. |
+| 6 | Conclusion | ✅ **Drafted** (drafts/ch6-conclusion-zh.md, 2026-06-28) — recap + core finding + 3 contributions + future work, ~480w. Not yet peer-reviewed. |
 
 > **Merge note (2026-06-25):** former Ch4 (benchmark quality+efficiency) and Ch5 (explanation usability, RQ4) merged into a single Results chapter (Ch4) with two major sections; Discussion/Conclusion renumbered to Ch5/Ch6. The two locked plan notes still hold at the section level.
 
