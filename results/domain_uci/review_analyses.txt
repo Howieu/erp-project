@@ -1,0 +1,45 @@
+======================================================================
+CR-2  Fair-comparison probe: can CLASSIX clusters be profiled into
+      a small set of actionable segments like ExKMC's 4 rules?
+======================================================================
+
+[K-Means++ k=4]  the partition ExKMC describes — 4 balanced segments:
+ cluster    n      recency frequency         monetary
+       0 1624 174 [81,264]   1 [1,2]    297 [164,438]
+       1  714     8 [3,16] 10 [7,15] 3739 [2361,6393]
+       2 1168   57 [31,89]   4 [3,5]  1352 [925,2030]
+       3  832    17 [8,25]   2 [1,3]    483 [290,732]
+
+[CLASSIX radius=0.9]  3 clusters, sizes {0: 4334, 2: 3, 1: 1}
+  -> centroid-profiling the CLASSIX *clusters*:
+ cluster    n     recency frequency               monetary
+       0 4334 51 [18,142]   2 [1,5]         675 [307,1662]
+       1    1     1 [1,1]   2 [2,2] 168472 [168472,168472]
+       2    3 64 [54,181]   1 [1,2]                6 [5,7]
+
+  Observation: CLASSIX yields ONE mega-cluster (>99%) + micro-outliers,
+  so the centroid-profiling post-step produces ~1 segment, NOT 4.
+
+[CLASSIX 42 starting-point groups, pre-merge]  sizes (top 8): [657, 441, 370, 324, 264, 253, 239, 230]
+  total groups = 42; the addressable granularity
+  is dozens of micro-groups, not a handful of segments.
+
+[radius sweep] largest-cluster share at each radius:
+  r=0.3: 30 clusters, largest holds 99.1% of customers
+  r=0.4: 16 clusters, largest holds 99.5% of customers
+  r=0.5: 14 clusters, largest holds 99.6% of customers
+  r=0.6: 5 clusters, largest holds 99.9% of customers
+  r=0.7: 4 clusters, largest holds 99.9% of customers
+  r=0.8: 2 clusters, largest holds 100.0% of customers
+  r=0.9: 3 clusters, largest holds 99.9% of customers
+
+======================================================================
+MN-4  Monetary-proxy validity: real amount vs item-count proxy (UCI)
+======================================================================
+
+corr(real money, frequency)      = 0.554
+corr(qty proxy,  frequency)      = 0.558
+corr(real money, qty proxy)      = 0.923   <- direct proxy validity
+
+ARI(k=4 segmentation: real money  vs  qty proxy) = 0.776
+  -> how much the same customers land in the same segments under either M.
