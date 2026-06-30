@@ -1,10 +1,18 @@
 # 可解释的电商客户分群：CLASSIX 几何解释与可解释 K-Means 规则的质量—可用性权衡
 
-> 装订稿（自动拼装自 `drafts/` 各章独立稿，2026-06-28）。摘要待补（见 ars-abstract）。
+> 装订稿（自动拼装自 `drafts/` 各章独立稿，2026-06-28；摘要与参考文献于 2026-06-30 补全）。
+
+## Abstract
+
+Customer segmentation underpins data-driven e-commerce operations, yet a segment is only useful if the operator can read its explanation and turn it into an action. Existing comparisons of clustering methods evaluate segmentation *quality* almost exclusively, leaving the *usability* of the accompanying explanation unexamined. This dissertation reframes the problem as a joint trade-off between clustering quality and explanation usability, and evaluates it on two contrasting explanation paradigms: the geometric, self-explaining clustering of CLASSIX versus the threshold-tree rules of explainable K-Means (ExKMC). Two end-to-end pipelines are compared on real retail data — UCI Online Retail (4,338 customers, RFM features) as the primary study, with RetailRocket (11,719 buyers) as a cross-dataset robustness check — alongside a nine-dataset benchmark. Because no human user study was feasible, explanation usability is operationalised through objective complexity proxies (rule count, conditions per rule, fidelity to K-Means, coverage; explanation dimensionality and number of starting points), justified by the functionally-grounded evaluation tradition. The quality axis shows no single global winner: CLASSIX is competitive and shape-robust (ARI up to 1.0 on shape sets) but trails on real/high-dimensional data and is hardest to tune without labels, while remaining the fastest (≈36× over K-Means++) and fully deterministic. On the explanation axis the two pipelines embody *different kinds* of trade-off: ExKMC's four rules are directly executable but post-hoc lossy approximations of an independent model (fidelity 0.80→0.91 as rules grow), whereas CLASSIX's explanation is intrinsic and loss-free to its own clustering but higher in complexity and not directly actionable. The study contributes a quality–usability framing, an empirical replication across two datasets, and a working ExKMC toolchain. The absence of a user study is acknowledged as the principal limitation.
+
+**Keywords:** explainable clustering; customer segmentation; CLASSIX; explainable K-Means (ExKMC); interpretability proxies; quality–usability trade-off; RFM
 
 ## 摘要
 
-【待补：双语摘要 + 关键词，由 ars-abstract 生成。】
+客户分群是电商数据驱动运营的基础，但一个分群只有在业务人员能读懂其解释、并据以行动时才真正有用。既有的聚类方法比较几乎只评估分群的**质量**，而其所附解释的**可用性**始终未被检验。本文将该问题重构为"聚类质量与解释可用性"的联合权衡，并在两种对照的解释范式上加以评估：几何式、自解释的 CLASSIX，与可解释 K-Means（ExKMC）的阈值树规则。研究在真实零售数据上比较两条端到端流水线——以 UCI Online Retail（4,338 名客户，RFM 特征）为主，并以 RetailRocket（11,719 名购买者）作跨数据集稳健性复核——另设九数据集基准。因无法开展真人用户研究，解释可用性被操作化为一组客观复杂度代理（规则数、每条规则条件数、对 K-Means 的保真度、覆盖度，以及解释维度与起始点数），并以功能性评估传统为其背书。质量轴上没有单一全域赢家：CLASSIX 有竞争力且对簇形状稳健（形状集 ARI 达 1.0），但在真实/高维数据上较弱、且无标签时最难调到位，而其速度最快（约为 K-Means++ 的 36 倍）且完全确定。解释轴上，两条流水线各有**性质不同**的取舍：ExKMC 的 4 条规则可直接执行，却是对一个独立模型的事后有损近似（规则增多时保真度由 0.80 升至 0.91）；CLASSIX 的解释内生、对自身聚类无失真，但复杂度更高、不能直接转成动作。本研究的贡献在于提出质量—可用性的评估框架、给出跨两数据集的实证复现，并产出一套可运行的 ExKMC 工具链。缺少真人用户研究是其主要局限。
+
+**关键词：** 可解释聚类；客户分群；CLASSIX；可解释 K-Means（ExKMC）；可解释性代理；质量—可用性权衡；RFM
 
 ---
 
@@ -326,16 +334,16 @@ ExKMC 的规则数（最大叶子数 k′）是一个可调旋钮，调它就能
 
 # 参考文献
 
-> Harvard（University of Manchester 风格）。标 `[待核]` 项需在定稿前以 citation-check 复核卷期页/出版信息。
+> Harvard（University of Manchester 风格）。
 
 - Alves Gomes, M. and Meisen, T. (2023) 'A review on customer segmentation methods for personalized customer targeting in e-commerce use cases', *Information Systems and e-Business Management*, 21(3), pp. 527–570. doi:10.1007/s10257-023-00640-4.
-- Chen, D. (2015) *Online Retail* [Dataset]. UCI Machine Learning Repository. [待核 id 352]
+- Chen, D. (2015) *Online Retail* [Dataset]. UCI Machine Learning Repository. doi:10.24432/C5BW33. Available at: https://archive.ics.uci.edu/dataset/352/online+retail (Accessed: 30 June 2026).
 - Chen, J. (2018) *Interpretable clustering methods*. PhD thesis. Northeastern University.
-- Chen, X. and Güttel, S. (2024) 'Fast and explainable clustering based on sorting', *Pattern Recognition*, 150, 110298. [待核 页码/doi]
+- Chen, X. and Güttel, S. (2024) 'Fast and explainable clustering based on sorting', *Pattern Recognition*, 150, 110298. doi:10.1016/j.patcog.2024.110298.
 - Dewoprabowo, R., Stefanus, L.Y. and Saptawijaya, A. (2025) 'Explainable clustering: methods, challenges, and future opportunities', *Journal of Intelligent Systems*, 34(1), 20240477. doi:10.1515/jisys-2024-0477.
 - Doshi-Velez, F. and Kim, B. (2017) 'Towards a rigorous science of interpretable machine learning', *arXiv:1702.08608*.
 - Hu, L., Jiang, M., Dong, J., Liu, X. and He, Z. (2024) 'Interpretable clustering: a survey', *arXiv:2409.00743*.
-- Hughes, A.M. (1994) *Strategic Database Marketing: The Masterplan for Starting and Managing a Profitable, Customer-based Marketing Program*. Chicago: Probus Publishing. [待核 出版方/版次]
+- Hughes, A.M. (1994) *Strategic Database Marketing: The Masterplan for Starting and Managing a Profitable, Customer-based Marketing Program*. Chicago: Probus Publishing.
 - Kasem, M.S.E., Hamada, M. and Taj-Eddin, I. (2024) 'Customer profiling, segmentation, and sales prediction using AI in direct marketing', *Neural Computing and Applications*, 36(9), pp. 4995–5005. doi:10.1007/s00521-023-09339-6.
 - Lakkaraju, H., Bach, S.H. and Leskovec, J. (2016) 'Interpretable decision sets: a joint framework for description and prediction', *Proceedings of KDD '16*. New York: ACM.
 - Lipton, Z.C. (2018) 'The mythos of model interpretability', *Communications of the ACM*, 61(10), pp. 36–43.
@@ -343,4 +351,4 @@ ExKMC 的规则数（最大叶子数 k′）是一个可调旋钮，调它就能
 - Moshkovitz, M., Dasgupta, S., Rashtchian, C. and Frost, N. (2020) 'Explainable k-means and k-medians clustering', *Proceedings of ICML 2020*, PMLR 119.
 - Sabbatini, F. and Calegari, R. (2023) 'Explainable clustering with CREAM', *Proceedings of KR 2023*, pp. 593–603. （仅作对照引用，未纳入实验）
 - Wedel, M. and Kamakura, W.A. (2000) *Market Segmentation: Conceptual and Methodological Foundations*. 2nd edn. Boston, MA: Kluwer. doi:10.1007/978-1-4615-4651-1.
-- RetailRocket (2017) *Retailrocket recommender system dataset* [Dataset]. Kaggle. [待核 URL/年份]
+- RetailRocket (2017) *Retailrocket recommender system dataset* [Dataset]. Kaggle. Available at: https://www.kaggle.com/datasets/retailrocket/ecommerce-dataset (Accessed: 30 June 2026).
